@@ -8,10 +8,10 @@ Bands drawn by draw_top(cv):
   B5 Numbers band            - y 504-556
 
 Bands drawn by draw_bottom(cv):
-  B6 Cards grid              - y 564-732 (stories 4-10)
+  B6 Cards grid              - y 564-732 (stories 4-13)
   B7 Date-check strip        - y 740-776
   B8 Map band                - y 784-884
-  B9 Also-on list            - y 892-988 (empty on this thin day)
+  B9 Also-on list            - y 892-988 (stories 14-26)
   B10 Footer                 - y 994-1008
 
 main() builds the full 1024x1024 canvas and writes entry.png to
@@ -265,8 +265,14 @@ CARD_YS = [564, 652]
 # Pin offsets (dx, dy from the continent block's top-left) per story,
 # chosen so adjacent pin centres stay >= 20 px apart.
 PIN_OFFSETS = {
-    1: (18, 11), 2: (42, 23), 3: (25, 12), 4: (66, 11), 5: (59, 20),
-    6: (93, 12), 7: (31, 11), 8: (90, 23), 9: (114, 11), 10: (134, 23),
+    # ASIA block (148x34): stories 1, 4, 5, 9, 10, 12, 13.
+    1: (18, 11), 4: (38, 23), 5: (58, 11), 9: (78, 23), 10: (98, 11),
+    12: (118, 23), 13: (136, 11),
+    # N AMERICA block (118x32): stories 2, 3, 6, 7. dy 21 (not 23) keeps
+    # the r=9 disc's bottom row off the block's bottom INK frame row.
+    2: (18, 11), 3: (48, 21), 6: (78, 11), 7: (104, 21),
+    # EUROPE (62x22): story 8. AFRICA (70x38): story 11.
+    8: (31, 11), 11: (35, 19),
 }
 
 
@@ -298,8 +304,8 @@ def _draw_card(cv, s, x, y):
 
 
 def _draw_cards(cv):
-    """B6: stories 4-10 in a 5x2 grid; empty cells stay bare PAPER."""
-    cards = [s for s in stories.STORIES if 4 <= s["n"] <= 10]
+    """B6: stories 4-13 in a 5x2 grid; empty cells stay bare PAPER."""
+    cards = [s for s in stories.STORIES if 4 <= s["n"] <= 13]
     for i, s in enumerate(cards):
         x = CARD_XS[i % 5]
         y = CARD_YS[i // 5]
@@ -317,7 +323,7 @@ def _map_pins():
     """One (block_key, dx, dy, n) per lead/card story."""
     pins = []
     for s in stories.STORIES:
-        if s["n"] > 10:
+        if s["n"] > 13:
             continue
         block = map.REGION_TO_BLOCK[s["region"]]
         dx, dy = PIN_OFFSETS[s["n"]]
@@ -338,12 +344,28 @@ def _draw_map_band(cv):
         font.draw_text(cv, line, 572, 802 + i * 18, draw.INK, 2)
 
 
+ALSO_COL_XS = [28, 268, 508, 748]
+ALSO_ROW_Y0 = 910
+ALSO_ROW_STEP = 16
+
+
 def _draw_also_on(cv):
-    """B9: title row; 0 also-on stories on this edition, no items."""
+    """B9: title row + also-on stories n>13, 4 cols x 5 rows filled
+    column by column; item = ACCENT number + INK headline, scale 2."""
     font.draw_text(cv, "ALSO ON THURSDAY", CX0, 892, draw.INK, 2)
-    n_also = sum(1 for s in stories.STORIES if s["n"] > 10)
-    font.draw_text_right(cv, f"{n_also} MORE STORIES", CX1, 892,
+    also = [s for s in stories.STORIES if s["n"] > 13]
+    font.draw_text_right(cv, f"{len(also)} MORE STORIES", CX1, 892,
                          draw.GREY, 2)
+    for i, s in enumerate(also):
+        col, row = divmod(i, 5)
+        if col >= len(ALSO_COL_XS):
+            break
+        x = ALSO_COL_XS[col]
+        y = ALSO_ROW_Y0 + row * ALSO_ROW_STEP
+        num = str(s["n"])
+        font.draw_text(cv, num, x, y, draw.ACCENT, 2)
+        hx = x + font.text_width(num, 2) + 6
+        font.draw_text(cv, s["headline"], hx, y, draw.INK, 2)
 
 
 def _distinct_outlets():

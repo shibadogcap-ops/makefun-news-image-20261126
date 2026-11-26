@@ -1,9 +1,16 @@
-"""Story data for the 26 November 2026 news-image edition.
+"""Story data for the 26 November 2026 news-image edition (v2).
 
-Thin day: only 10 stories were verifiable as genuinely dated
-26 November 2026 (US Thanksgiving). Every candidate verified as a
+26-story edition: 3 leads + 10 cards + 13 also-on. v2 adds 13
+genuinely-26-November stories from the evening harvest, corrects the
+Asian-markets figures (the Nikkei closed at 57,499.16, +0.86% -- v1's
+58,125 / +1.95% was wrong), demotes Kim from Lead B to a card, and
+demotes Constitution Day from a card to also-on.
+
+The count is below the spec's 30-story minimum because 26 November
+was a genuinely thin day (US Thanksgiving); this is documented, not
+an error -- no stories were invented. Every candidate verified as a
 23-25 November event is excluded and recorded in EXCLUSIONS for the
-date-check strip. 3 leads + 7 cards + 0 also-on = 10 stories.
+date-check strip.
 
 All strings are ALL CAPS, stored pre-wrapped to the line budgets in
 DESIGN-SPEC section 7, and use only drawable characters.
@@ -30,17 +37,17 @@ STORIES = [
     # ---- Lead B (n=2) ----
     {
         "n": 2,
-        "region": "ASIA-PACIFIC",
+        "region": "N AMERICA",
         "field": "POLITICS",
-        "headline": ["KIM NUKE CALL"],
+        "headline": ["NO WIDER WAR"],
         "body": [
-            "KIM CALLS TO DIVERSIFY",
-            "TACTICAL NUCLEAR ARMS",
+            "TRUMP, RUTTE URGE RUSSIA",
+            "NOT TO WIDEN UKRAINE WAR",
         ],
-        "outlet": "KCNA + REUTERS",
+        "outlet": "NATO + LBC",
         "status": "CONFIRMED",
-        "hour_utc": 1,
-        "pin": "ASIA",
+        "hour_utc": None,
+        "pin": "N AMERICA",
         "number_story": False,
     },
     # ---- Lead C (n=3) ----
@@ -59,9 +66,21 @@ STORIES = [
         "pin": "N AMERICA",
         "number_story": True,
     },
-    # ---- Cards (n=4..10) ----
+    # ---- Cards (n=4..13) ----
     {
         "n": 4,
+        "region": "ASIA-PACIFIC",
+        "field": "POLITICS",
+        "headline": ["KIM NUKE", "CALL"],
+        "summary": "DIVERSIFY ARMS",
+        "outlet": "KCNA + REUTERS",
+        "status": "CONFIRMED",
+        "hour_utc": 1,
+        "pin": "ASIA",
+        "number_story": False,
+    },
+    {
+        "n": 5,
         "region": "ASIA-PACIFIC",
         "field": "CULTURE",
         "headline": ["TAI PO", "REMEMBERS"],
@@ -73,7 +92,7 @@ STORIES = [
         "number_story": True,
     },
     {
-        "n": 5,
+        "n": 6,
         "region": "N AMERICA",
         "field": "CLIMATE",
         "headline": ["KING TIDES", "HIT COAST"],
@@ -85,7 +104,7 @@ STORIES = [
         "number_story": True,
     },
     {
-        "n": 6,
+        "n": 7,
         "region": "N AMERICA",
         "field": "SOCIETY",
         "headline": ["AIRPORT", "CHAOS"],
@@ -97,7 +116,7 @@ STORIES = [
         "number_story": False,
     },
     {
-        "n": 7,
+        "n": 8,
         "region": "EUROPE",
         "field": "POLITICS",
         "headline": ["UK-EU BILL"],
@@ -109,28 +128,16 @@ STORIES = [
         "number_story": False,
     },
     {
-        "n": 8,
+        "n": 9,
         "region": "ASIA-PACIFIC",
         "field": "ECONOMY",
         "headline": ["STOCKS UP", "IN ASIA"],
-        "summary": "NIKKEI +1.95%",
-        "outlet": "CNBC TV18 + BLOOMBERG",
+        "summary": "NIKKEI +0.86%",
+        "outlet": "XINHUA + MAINICHI",
         "status": "CONFIRMED",
         "hour_utc": 6,
         "pin": "ASIA",
         "number_story": True,
-    },
-    {
-        "n": 9,
-        "region": "ASIA-PACIFIC",
-        "field": "CULTURE",
-        "headline": ["INDIA DAY"],
-        "summary": ["CONSTITUTION", "ADOPTED IN 1949"],
-        "outlet": "SELFSTUDYS",
-        "status": "REPORTED",
-        "hour_utc": None,
-        "pin": "ASIA",
-        "number_story": False,
     },
     {
         "n": 10,
@@ -144,15 +151,208 @@ STORIES = [
         "pin": "ASIA",
         "number_story": True,
     },
+    {
+        "n": 11,
+        "region": "AFRICA",
+        "field": "HEALTH",
+        "headline": ["EBOLA", "TOPS 12K"],
+        "summary": "12,021 CASES",
+        "outlet": "REUTERS + AL JAZEERA",
+        "status": "CONFIRMED",
+        "hour_utc": None,
+        "pin": "AFRICA",
+        "number_story": True,
+    },
+    {
+        "n": 12,
+        "region": "ASIA-PACIFIC",
+        "field": "ECONOMY",
+        "headline": ["CHINA", "HITS BACK"],
+        "summary": "TARIFF RESPONSE",
+        "outlet": "XINHUA + CNA",
+        "status": "CONFIRMED",
+        "hour_utc": None,
+        "pin": "ASIA",
+        "number_story": False,
+    },
+    {
+        "n": 13,
+        "region": "MIDDLE EAST",
+        "field": "CONFLICT",
+        "headline": ["GAZA", "NINE DEAD"],
+        "summary": "ISRAEL STRIKES",
+        "outlet": "AP + REUTERS",
+        "status": "CONFIRMED",
+        "hour_utc": None,
+        "pin": "ASIA",
+        "number_story": False,
+    },
+    # ---- Also-on (n=14..26) ----
+    {
+        "n": 14,
+        "region": "EUROPE",
+        "field": "POLITICS",
+        "headline": "EU SUMMIT OPENS",
+        "outlet": "EURONEWS + REUTERS",
+        "status": "CONFIRMED",
+        "hour_utc": None,
+        "pin": None,
+        "number_story": False,
+        "kind": "also_on",
+    },
+    {
+        "n": 15,
+        "region": "ASIA-PACIFIC",
+        "field": "CULTURE",
+        "headline": "CONSTITUTION DAY",
+        "outlet": "SELFSTUDYS",
+        "status": "REPORTED",
+        "hour_utc": None,
+        "pin": None,
+        "number_story": False,
+        "kind": "also_on",
+    },
+    {
+        "n": 16,
+        "region": "ASIA-PACIFIC",
+        "field": "POLITICS",
+        "headline": "CHINA-JAPAN ROW",
+        "outlet": "XINHUA + ABS-CBN",
+        "status": "CONFIRMED",
+        "hour_utc": None,
+        "pin": None,
+        "number_story": False,
+        "kind": "also_on",
+    },
+    {
+        "n": 17,
+        "region": "S AMERICA",
+        "field": "POLITICS",
+        "headline": "ENVOY RECALLED",
+        "outlet": "MERCOPRESS + ANADOLU",
+        "status": "CONFIRMED",
+        "hour_utc": None,
+        "pin": None,
+        "number_story": False,
+        "kind": "also_on",
+    },
+    {
+        "n": 18,
+        "region": "ASIA-PACIFIC",
+        "field": "POLITICS",
+        "headline": "CENSURE FOR SEKI",
+        "outlet": "JAPAN TIMES + YOMIURI",
+        "status": "CONFIRMED",
+        "hour_utc": None,
+        "pin": None,
+        "number_story": False,
+        "kind": "also_on",
+    },
+    {
+        "n": 19,
+        "region": "ASIA-PACIFIC",
+        "field": "SOCIETY",
+        "headline": "SC LABEL RULING",
+        "outlet": "HINDUSTAN TIMES + INDIA TODAY",
+        "status": "CONFIRMED",
+        "hour_utc": None,
+        "pin": None,
+        "number_story": False,
+        "kind": "also_on",
+    },
+    {
+        "n": 20,
+        "region": "ASIA-PACIFIC",
+        "field": "CULTURE",
+        "headline": "NETFLIX TOLD NO",
+        "outlet": "REUTERS + THE HINDU",
+        "status": "CONFIRMED",
+        "hour_utc": None,
+        "pin": None,
+        "number_story": False,
+        "kind": "also_on",
+    },
+    {
+        "n": 21,
+        "region": "ASIA-PACIFIC",
+        "field": "SCIENCE",
+        "headline": "CHINA EYES 6G",
+        "outlet": "XINHUA + GLOBAL TIMES",
+        "status": "CONFIRMED",
+        "hour_utc": None,
+        "pin": None,
+        "number_story": False,
+        "kind": "also_on",
+    },
+    {
+        "n": 22,
+        "region": "AFRICA",
+        "field": "SOCIETY",
+        "headline": "HIV FUNDS PLEA",
+        "outlet": "TOP AFRICA NEWS + APO GROUP",
+        "status": "CONFIRMED",
+        "hour_utc": None,
+        "pin": None,
+        "number_story": False,
+        "kind": "also_on",
+    },
+    {
+        "n": 23,
+        "region": "ASIA-PACIFIC",
+        "field": "CULTURE",
+        "headline": "MUMBAI REMEMBERS",
+        "outlet": "INDIA TODAY + REPUBLIC",
+        "status": "CONFIRMED",
+        "hour_utc": None,
+        "pin": None,
+        "number_story": False,
+        "kind": "also_on",
+    },
+    {
+        "n": 24,
+        "region": "S AMERICA",
+        "field": "ECONOMY",
+        "headline": "TARIFFS BLASTED",
+        "outlet": "AL JAZEERA + FREE MALAYSIA TODAY",
+        "status": "CONFIRMED",
+        "hour_utc": None,
+        "pin": None,
+        "number_story": False,
+        "kind": "also_on",
+    },
+    {
+        "n": 25,
+        "region": "ASIA-PACIFIC",
+        "field": "ECONOMY",
+        "headline": "SANCTIONS LIFTED",
+        "outlet": "XINHUA + CGTN",
+        "status": "CONFIRMED",
+        "hour_utc": None,
+        "pin": None,
+        "number_story": False,
+        "kind": "also_on",
+    },
+    {
+        "n": 26,
+        "region": "ASIA-PACIFIC",
+        "field": "SPORT",
+        "headline": "CHIBA ON BOOING",
+        "outlet": "AFP + STRAITS TIMES",
+        "status": "CONFIRMED",
+        "hour_utc": None,
+        "pin": None,
+        "number_story": False,
+        "kind": "also_on",
+    },
 ]
 
 # Numbers band: 5 big-number callouts, each tied to a number_story.
 NUMBERS = [
-    {"value": "168", "label": "TAI PO FIRE DEAD", "story_n": 4},
+    {"value": "168", "label": "TAI PO FIRE DEAD", "story_n": 5},
     {"value": "70 MPH", "label": "STORM GUSTS", "story_n": 3},
-    {"value": "58,125", "label": "NIKKEI CLOSE", "story_n": 8},
+    {"value": "57,499", "label": "NIKKEI CLOSE", "story_n": 9},
     {"value": "510M", "label": "MIZUHO DEAL", "story_n": 10},
-    {"value": "2.4 FT", "label": "KING TIDE SURGE", "story_n": 5},
+    {"value": "12,021", "label": "EBOLA CASES", "story_n": 11},
 ]
 
 # Candidates excluded from this edition's date scope (23-25 Nov),
@@ -222,20 +422,22 @@ def _check_lines(lines, where, max_len, exact=None):
 
 def validate():
     # --- story count / roles ---
-    if len(STORIES) != 10:
-        raise AssertionError(f"STORIES must contain exactly 10 stories, got {len(STORIES)}")
+    if len(STORIES) != 26:
+        raise AssertionError(f"STORIES must contain exactly 26 stories, got {len(STORIES)}")
 
     leads = [s for s in STORIES if s["n"] <= 3]
-    cards = [s for s in STORIES if 4 <= s["n"] <= 10]
-    if len(leads) != 3 or len(cards) != 7:
+    cards = [s for s in STORIES if 4 <= s["n"] <= 13]
+    also_on = [s for s in STORIES if 14 <= s["n"] <= 26]
+    if len(leads) != 3 or len(cards) != 10 or len(also_on) != 13:
         raise AssertionError(
-            f"expected 3 leads (n 1-3) and 7 cards (n 4-10), "
-            f"got {len(leads)} leads and {len(cards)} cards")
+            f"expected 3 leads (n 1-3), 10 cards (n 4-13) and 13 also-on "
+            f"(n 14-26), got {len(leads)} leads, {len(cards)} cards, "
+            f"{len(also_on)} also-on")
 
     # --- story numbers in drawn order, no gaps/dupes ---
     ns = [s["n"] for s in STORIES]
-    if ns != list(range(1, 11)):
-        raise AssertionError(f"story numbers must be 1..10 in drawn order, got {ns}")
+    if ns != list(range(1, 27)):
+        raise AssertionError(f"story numbers must be 1..26 in drawn order, got {ns}")
 
     by_n = {s["n"]: s for s in STORIES}
 
@@ -246,16 +448,27 @@ def validate():
             raise AssertionError(f"{where}: missing keys {sorted(missing)}")
 
         # headline budgets: lead A 2 lines x <=12, lead B/C 1 line x <=15,
-        # card Variant A 2 lines x <=10, card Variant B 1 line x <=10
+        # card Variant A 2 lines x <=10, card Variant B 1 line x <=10,
+        # also-on headline a single string <=16 chars
         h = s["headline"]
         if s["n"] == 1:
             _check_lines(h, f"{where} headline", 12, exact=2)
         elif s["n"] in (2, 3):
             _check_lines(h, f"{where} headline", 15, exact=1)
-        elif s["n"] in (4, 5, 6, 8, 10):  # card Variant A
-            _check_lines(h, f"{where} headline", 10, exact=2)
-        else:  # card Variant B
-            _check_lines(h, f"{where} headline", 10, exact=1)
+        elif s["n"] in range(4, 14):
+            # card variant is keyed off the summary type: str = Variant A
+            # (2 headline lines), list = Variant B (1 headline line)
+            exact = 1 if isinstance(s["summary"], list) else 2
+            _check_lines(h, f"{where} headline", 10, exact=exact)
+        else:
+            if not isinstance(h, str):
+                raise AssertionError(
+                    f"{where}: also-on headline must be a single string")
+            if len(h) > 16:
+                raise AssertionError(
+                    f"{where}: also-on headline {len(h)} chars exceeds 16: {h!r}")
+            _check_allcaps(h, f"{where} headline")
+            _check_drawable(h, f"{where} headline")
 
         if s["n"] == 1:
             if "body" not in s:
@@ -265,17 +478,33 @@ def validate():
             if "body" not in s:
                 raise AssertionError(f"{where}: lead must have body")
             _check_lines(s["body"], f"{where} body", 26, exact=2)
-        else:
+        elif s["n"] in range(4, 14):
             if "summary" not in s:
                 raise AssertionError(f"{where}: card must have summary")
             summ = s["summary"]
-            # Variant A: 1 line <=15; Variant B: 2 lines x <=15
-            if s["n"] in (4, 5, 6, 8, 10):
-                if not isinstance(summ, str):
-                    raise AssertionError(f"{where}: card Variant A summary must be a string")
+            # Variant A: str summary = 1 line <=15 -> 2 headline lines;
+            # Variant B: list of 2 lines <=15 each -> 1 headline line
+            if isinstance(summ, str):
                 _check_lines([summ], f"{where} summary", 15, exact=1)
-            else:
+            elif isinstance(summ, list):
                 _check_lines(summ, f"{where} summary", 15, exact=2)
+            else:
+                raise AssertionError(
+                    f"{where}: card summary must be a string (Variant A) "
+                    f"or list of 2 strings (Variant B)")
+        else:
+            if s.get("kind") != "also_on":
+                raise AssertionError(
+                    f"{where}: also-on story must have kind 'also_on'")
+            if s["hour_utc"] is not None:
+                raise AssertionError(
+                    f"{where}: also-on hour_utc must be None, got {s['hour_utc']!r}")
+            if s["pin"] is not None:
+                raise AssertionError(
+                    f"{where}: also-on pin must be None, got {s['pin']!r}")
+            if s["number_story"] is not False:
+                raise AssertionError(
+                    f"{where}: also-on number_story must be False")
 
         # scalar fields
         if not s["outlet"] or not isinstance(s["outlet"], str):
@@ -297,11 +526,6 @@ def validate():
             raise AssertionError(f"{where}: region must be a non-empty string")
         if not isinstance(s["field"], str) or not s["field"]:
             raise AssertionError(f"{where}: field must be a non-empty string")
-
-    # --- also-on must be absent (0 also-on stories) ---
-    for s in STORIES:
-        if s["n"] > 10 or s.get("kind") == "also_on":
-            raise AssertionError(f"story {s['n']}: no also-on stories allowed")
 
     # --- NUMBERS ---
     if len(NUMBERS) != 5:
